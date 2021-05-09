@@ -1,0 +1,143 @@
+﻿@model YFM.Models.ArtistWithMediaItemViewModel
+
+@{
+    ViewBag.Title = "Details";
+    var birthname = "";
+    if (Model.BirthName == null || Model.BirthName == "")
+    {
+        birthname = "N/A";
+    } else
+    {
+        birthname = Model.BirthName;
+    }
+    var portrayal = "";
+    if (Model.Portrayal == null || Model.Portrayal == "")
+    {
+        portrayal = "N/A";
+    } else
+    {
+        portrayal = "";
+    }
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h2>Artist details - @Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthName)
+        </dt>
+
+        <dd>
+            @birthname
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthOrStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthOrStartDate)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlArtist)
+        </dt>
+
+        <dd>
+            <img src="@(Model.UrlArtist)" width="200" />
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Executive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Executive)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portrayal)
+        </dt>
+
+        <dd>
+            @portrayal
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model)
+        </dt>
+
+        @foreach(var item in Model.MediaItems)
+        {
+            if (item.ContentType == "audio/mp3")
+            {
+                <dt>
+                    Audio
+                </dt>
+                <dc>
+                    <div class="col-md-4 col-sm-5 col-xs-10">
+                        <span>@item.Caption</span>
+                        <audio src="~/mediaItem/@item.StringId" controls="controls"></audio>
+                        <br />
+                    </div>
+                </dc>
+            }
+            if(item.ContentType == "video/mp4")
+            {
+                <dt>
+                    Video
+                </dt>
+                <dd>
+                    <div class="col-md-4 col-sm-5 col-xs-10">
+                        <span>@item.Caption</span>
+                        <video width="200">
+                            <source src="~/mediaitem/@item.StringId" type="video/mp4" />
+                        </video>
+                    </div>
+                </dd>
+            }
+            if(item.ContentType == "application/pdf")
+            {
+                <dt>
+                    Document
+                </dt>
+                <dd>
+                    <div>@item.Caption</div>
+                    <a href="~/mediaItem/@item.StringId/download"><i class="fa fa-file-text-o" style="font-size:24px"></i></a>
+                </dd>
+            }
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index") | 
+    @Html.ActionLink("Add album for this artist", "AddAlbum", new { id = Model.Id }) | 
+    @Html.ActionLink("Add media for this artist", "AddMedia", new { id = Model.Id })
+</p>
