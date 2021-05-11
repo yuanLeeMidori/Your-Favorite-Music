@@ -121,11 +121,11 @@ namespace YFM.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Given (first) name(s)")]
+        [Display(Name = "First name")]
         [Required, StringLength(128, ErrorMessage = "The {0} must be {2} or fewer characters.")]
         public string GivenName { get; set; }
 
-        [Display(Name = "Surname (family name)")]
+        [Display(Name = "Last name")]
         [Required, StringLength(128, ErrorMessage = "The {0} must be {2} or fewer characters.")]
         public string Surname { get; set; }
 
