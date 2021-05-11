@@ -3,12 +3,12 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>To create a new account, fill out this form and click <b>Submit</b> button. Be careful when reading the role description, different role has different permission for certain feature. You can select more than one role.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -46,14 +46,49 @@
     <div class="form-group">
         @Html.LabelFor(m => m.RoleList, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @{ 
+            @{
                 foreach (var item in Model.RoleList)
                 {
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="Roles" checked="@item.Selected" value="@item.Text" />@item.Text
-                        </label>
-                    </div>
+                    if (item.Text == "Clerk")
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Roles" checked="@item.Selected" value="@item.Text" />@item.Text (Able to add track to album, and edit existing track)
+                            </label>
+                        </div>
+                    }
+                    else if (item.Text == "Coordinator")
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Roles" checked="@item.Selected" value="@item.Text" />@item.Text (Able to add album to artist)
+                            </label>
+                        </div>
+                    }
+                    else if (item.Text == "Executive")
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Roles" checked="@item.Selected" value="@item.Text" />@item.Text (Able to create new artist, or add media item to the artist)
+                            </label>
+                        </div>
+                    }
+                    else if (item.Text == "Staff")
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Roles" checked="@item.Selected" value="@item.Text" />@item.Text (Able to view artists, albums, and tracks)
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Roles" checked="@item.Selected" value="@item.Text" />@item.Text
+                            </label>
+                        </div>
+                    }
                 }
             }
         </div>
@@ -62,7 +97,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Submit" />
         </div>
     </div>
 }
