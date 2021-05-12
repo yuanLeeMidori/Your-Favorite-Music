@@ -21,6 +21,23 @@
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    a:hover, a:visited, a:link, a:active {
+        text-decoration: none;
+    }
+    .toolBtns {
+        color: #012a4a !important;
+        background-color: #edf2fb;
+        border-color: #274c77;
+    }
+    .toolBtns:hover {
+        background-color: #D1DDFF;
+        border-color: #274c77;
+    }
+    #toolBtns {
+        color: #012a4a !important;
+    }
+</style>
 <h2>Artist details - @Html.DisplayFor(model => model.Name)</h2>
 
 <div>
@@ -137,7 +154,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index") | 
-    @Html.ActionLink("Add album for this artist", "AddAlbum", new { id = Model.Id }) | 
-    @Html.ActionLink("Add media for this artist", "AddMedia", new { id = Model.Id })
+    <button type="button" class="btn btn-default toolBtns">@Html.ActionLink("Back to List", "Index", new { area = "" }, new { @id = "toolBtns" })</button> 
+    <button type="button" class="btn btn-default toolBtns">@Html.ActionLink("Add Album for This Artist", "AddAlbum", new { id = Model.Id }, new { @id = "toolBtns" })</button> 
+    @*@Html.ActionLink("Add album for this artist", "AddAlbum", new { id = Model.Id }) |*@
+    <button type="button" class="btn btn-default toolBtns">@Html.ActionLink("Add Media for This Artist", "AddMedia", new { id = Model.Id }, new { @id = "toolBtns" })</button>
+    @*@Html.ActionLink("Add media for this artist", "AddMedia", new { id = Model.Id })*@
 </p>
