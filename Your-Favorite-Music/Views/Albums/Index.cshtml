@@ -3,7 +3,25 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    a:hover, a:visited, a:link, a:active {
+        text-decoration: none;
+    }
 
+    .detailBtn {
+        background-color: #edf2fb;
+        border-color: #274c77;
+    }
+
+    .detailBtn:hover {
+        background-color: #D1DDFF;
+        border-color: #274c77;
+    }
+
+    #detailBtn {
+        color: #012a4a !important;
+    }
+</style>
 <h2>Album list</h2>
 
 <table class="table">
@@ -44,7 +62,7 @@
             @Html.Raw(item.Depiction)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id })
+            <button type="button" class="btn btn-default detailBtn">@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @id = "detailBtn" })</button>
         </td>
     </tr>
 }
