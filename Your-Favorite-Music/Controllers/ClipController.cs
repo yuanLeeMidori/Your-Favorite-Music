@@ -23,6 +23,10 @@ namespace YFM.Controllers
             if (o == null)
             {
                 return HttpNotFound();
+
+            } else if (o.ClipContentType == null)
+            {
+                return null;
             }
             else
             {

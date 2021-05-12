@@ -47,11 +47,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ClipUrl)
+  
+            @Html.DisplayNameFor(model => model.ClipUrl)<br />(Audio is disable if no clip is uploaded for the track)
+    
         </dt>
 
         <dd>
+
             <audio src="/clip/@Model.Id" controls="controls"></audio>
+
+
         </dd>
 
     </dl>

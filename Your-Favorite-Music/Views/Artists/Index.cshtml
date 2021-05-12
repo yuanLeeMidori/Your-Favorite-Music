@@ -4,16 +4,37 @@
     ViewBag.Title = "Index";
 }
 <style>
-    #createBtn {
-        color: red !important
+    .createBtn {
+        margin-bottom: 10px;
+        background-color: #edf2fb;
+        border-color: #90a955;
     }
+    .createBtn:hover {
+        background-color: #ecf39e;
+        border-color: #90a955
+    }
+    #createBtn {
+        color: #31572c !important;
+        
+    }
+    a:hover, a:visited, a:link, a:active {
+        text-decoration: none;
+    }
+    .detailBtn {
+        background-color: #edf2fb;
+        border-color: #274c77;
+    }
+    .detailBtn:hover {
+        background-color: #D1DDFF;
+        border-color: #274c77;
+    }
+    #detailBtn {
+        color: #012a4a !important;
+    }
+
 </style>
 <h2>Artist list</h2>
-
-@* 1. change button color and font color (blue green tone)
-   2. change ^ when hover (opposite)
-   3. remove link underline*@
-<button type="button" class="btn btn-outline">
+<button type="button" class="btn btn-default createBtn">
     @Html.ActionLink("Create New", "Create", new { area = "" }, new { @id = "createBtn" })
 </button>
 <table class="table">
@@ -63,11 +84,8 @@
     <td>
         @Html.Raw(item.Portrayal)
     </td>
-    @* 1. change button and font color to gray tone
-       2. change ^ when hover (opposite)
-       3. remove underline on link*@
     <td>
-        <button type="button" class="btn btn-outline-secondary">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+        <button type="button" class="btn btn-default detailBtn">@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @id = "detailBtn" })</button>
     </td>
 </tr>
 }
