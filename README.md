@@ -1,11 +1,12 @@
 # Your-Favorite-Music
 
 An application to manage your music collection.
+
 Deployment: http://yourfavoritemusic.azurewebsites.net
 
 ### Artist
 
-**Executive** role can *create* new artist, and add media.
+**Executive** role can *create* new artist, and add media (document, picture, video clip) to the existing artists.
 
 ### Album
 
